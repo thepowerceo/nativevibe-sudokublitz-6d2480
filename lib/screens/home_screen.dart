@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ElevatedButton.icon(
                       onPressed: () => context.go('/scoreboard'),
                       icon: const Icon(Icons.leaderboard),
-                      label: const Text('View FULL SCORE-BOARD'),
+                      label: const Text('View FULL SCORE-BOARD, Mary!'),
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
                         shape: RoundedRectangleBorder(
