@@ -1,6 +1,6 @@
-import 'package:sudoku_blitz/screens/home_screen.dart';
-import 'package:sudoku_blitz/screens/game_screen.dart';
-import 'package:sudoku_blitz/screens/scoreboard_screen.dart';
+import 'package:flutter_app/screens/home_screen.dart';
+import 'package:flutter_app/screens/game_screen.dart';
+import 'package:flutter_app/screens/scoreboard_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 

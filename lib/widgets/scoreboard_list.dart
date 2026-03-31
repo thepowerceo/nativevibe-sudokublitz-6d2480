@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sudoku_blitz/models/score.dart';
-import 'package:sudoku_blitz/widgets/scoreboard_card.dart';
+import 'package:flutter_app/models/score.dart';
+import 'package:flutter_app/widgets/scoreboard_card.dart';
 
 class ScoreboardList extends StatelessWidget {
   final List<Score> scores;

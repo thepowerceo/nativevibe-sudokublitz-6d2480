@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:sudoku_blitz/providers/game_state.dart';
-import 'package:sudoku_blitz/widgets/sudoku_grid.dart';
-import 'package:sudoku_blitz/widgets/number_pad.dart';
+import 'package:flutter_app/providers/game_state.dart';
+import 'package:flutter_app/widgets/sudoku_grid.dart';
+import 'package:flutter_app/widgets/number_pad.dart';
+import 'package:flutter_app/models/sudoku_puzzle.dart';
 import 'dart:async';
 
 class GameScreen extends StatefulWidget {
@@ -23,6 +24,25 @@ class _GameScreenState extends State<GameScreen> {
     if (!gameState.isPaused) {
       _startTimer();
     }
+    // ARCHITECTURE: Listen for invalid move events to show user feedback
+    gameState.addListener(_handleGameStateChanges);
+  }
+
+  void _handleGameStateChanges() {
+    final gameState = context.read<GameState>();
+    if (gameState.hasConflict) {
+      _showConflictSnackBar();
+    }
+  }
+
+  void _showConflictSnackBar() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('Conflict! This number is not allowed here.'),
+        duration: const Duration(seconds: 2),
+        backgroundColor: Theme.of(context).colorScheme.error,
+      ),
+    );
   }
 
   void _startTimer() {
@@ -37,6 +57,8 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void dispose() {
     _timer?.cancel();
+    // ARCHITECTURE: Remove listener to prevent memory leaks
+    context.read<GameState>().removeListener(_handleGameStateChanges);
     super.dispose();
   }
 

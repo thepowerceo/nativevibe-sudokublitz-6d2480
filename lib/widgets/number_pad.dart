@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sudoku_blitz/providers/game_state.dart';
+import 'package:flutter_app/providers/game_state.dart';
 
 class NumberPad extends StatelessWidget {
   const NumberPad({super.key});

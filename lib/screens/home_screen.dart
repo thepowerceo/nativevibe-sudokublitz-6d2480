@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:sudoku_blitz/models/sudoku_puzzle.dart';
-import 'package:sudoku_blitz/providers/game_state.dart';
-import 'package:sudoku_blitz/providers/scoreboard_state.dart';
-import 'package:sudoku_blitz/widgets/difficulty_card.dart';
-import 'package:sudoku_blitz/widgets/async_state_builder.dart';
-import 'package:sudoku_blitz/widgets/scoreboard_card.dart';
+import 'package:flutter_app/models/sudoku_puzzle.dart';
+import 'package:flutter_app/providers/game_state.dart';
+import 'package:flutter_app/providers/scoreboard_state.dart';
+import 'package:flutter_app/widgets/difficulty_card.dart';
+import 'package:flutter_app/widgets/async_state_builder.dart';
+import 'package:flutter_app/widgets/scoreboard_card.dart';
+import 'package:flutter_app/models/sudoku_puzzle.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});

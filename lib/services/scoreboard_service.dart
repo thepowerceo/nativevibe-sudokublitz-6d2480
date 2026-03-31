@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:sudoku_blitz/models/score.dart';
-import 'package:sudoku_blitz/models/sudoku_puzzle.dart';
+import 'package:flutter_app/models/score.dart';
+import 'package:flutter_app/models/sudoku_puzzle.dart';
 
 /// A service for managing and retrieving game scores.
 /// Uses mock data for score storage and retrieval.

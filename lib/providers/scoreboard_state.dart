@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
-import 'package:sudoku_blitz/models/score.dart';
-import 'package:sudoku_blitz/models/sudoku_puzzle.dart';
-import 'package:sudoku_blitz/services/scoreboard_service.dart';
-import 'package:sudoku_blitz/widgets/async_state_builder.dart'; // Import DataState
+import 'package:flutter_app/models/score.dart';
+import 'package:flutter_app/models/sudoku_puzzle.dart';
+import 'package:flutter_app/services/scoreboard_service.dart';
+import 'package:flutter_app/widgets/async_state_builder.dart'; // Import DataState
 
 enum ScoreboardStatus implements DataState {
   initial,

@@ -1,4 +1,4 @@
-name: sudoku_blitz
+name: flutter_app
 description: A Sudoku game with different difficulty levels and a scoreboard
 
 publish_to: 'none'

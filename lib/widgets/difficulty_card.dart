@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sudoku_blitz/models/sudoku_puzzle.dart';
+import 'package:flutter_app/models/sudoku_puzzle.dart';
 
 /// A card widget to display a Sudoku difficulty level and allow selection.
 class DifficultyCard extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:sudoku_blitz/providers/game_state.dart';
-import 'package:sudoku_blitz/providers/scoreboard_state.dart';
-import 'package:sudoku_blitz/services/sudoku_service.dart';
-import 'package:sudoku_blitz/services/scoreboard_service.dart';
+import 'package:flutter_app/providers/game_state.dart';
+import 'package:flutter_app/providers/scoreboard_state.dart';
+import 'package:flutter_app/services/sudoku_service.dart';
+import 'package:flutter_app/services/scoreboard_service.dart';
 
 /// A collection of all top-level providers for the application.
 class AppProviders {

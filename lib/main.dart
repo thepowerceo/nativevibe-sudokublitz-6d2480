@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:sudoku_blitz/config/routes.dart';
-import 'package:sudoku_blitz/providers/app_provider.dart';
-import 'package:sudoku_blitz/theme/app_theme.dart';
+import 'package:flutter_app/config/routes.dart';
+import 'package:flutter_app/providers/app_provider.dart';
+import 'package:flutter_app/theme/app_theme.dart';
 
 void main() {
   runApp(

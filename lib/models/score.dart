@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:uuid/uuid.dart';
-import 'package:sudoku_blitz/models/sudoku_puzzle.dart';
+import 'package:flutter_app/models/sudoku_puzzle.dart';
 
 /// Represents a player's score for a completed Sudoku puzzle.
 @immutable
