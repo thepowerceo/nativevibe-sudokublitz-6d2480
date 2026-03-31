@@ -7,7 +7,6 @@ import 'package:flutter_app/providers/scoreboard_state.dart';
 import 'package:flutter_app/widgets/difficulty_card.dart';
 import 'package:flutter_app/widgets/async_state_builder.dart';
 import 'package:flutter_app/widgets/scoreboard_card.dart';
-import 'package:flutter_app/models/sudoku_puzzle.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -17,7 +16,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool _isStartingGame = false;
+  // ARCHITECTURE: Using a local state variable to track game starting status
+  // for UI feedback (spinner) on the selected difficulty card.
+  SudokuDifficulty? _startingDifficulty;
 
   @override
   void initState() {
@@ -29,10 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _startNewGame(SudokuDifficulty difficulty) async {
-    if (_isStartingGame) return;
+    if (_startingDifficulty != null) return; // Prevent multiple simultaneous game starts
 
     setState(() {
-      _isStartingGame = true;
+      _startingDifficulty = difficulty;
     });
 
     await context.read<GameState>().newGame(difficulty);
@@ -42,14 +43,16 @@ class _HomeScreenState extends State<HomeScreen> {
       if (gameState.status == GameStatus.playing) {
         context.go('/game');
       } else {
-        setState(() {
-          _isStartingGame = false;
-        });
         if (gameState.status == GameStatus.error) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(gameState.errorMessage ?? 'Failed to start game.')));
         }
       }
+      // USER_DECISION: Reset _startingDifficulty after navigation attempt
+      // This ensures the spinner is removed even if navigation fails or game doesn't start.
+      setState(() {
+        _startingDifficulty = null;
+      });
     }
   }
 
@@ -58,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
     final scoreboardState = context.watch<ScoreboardState>();
+    final gameState = context.watch<GameState>(); // Watch GameState here
 
     return Scaffold(
       appBar: AppBar(
@@ -80,15 +84,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     DifficultyCard(
                       difficulty: SudokuDifficulty.easy,
                       onTap: () => _startNewGame(SudokuDifficulty.easy),
-                      isLoading: _isStartingGame && context.watch<GameState>().status == GameStatus.loading),
+                      // USER_DECISION: Only show loading for the specific difficulty being started
+                      // The isLoading property is now correctly tied to _startingDifficulty.
+                      isLoading: _startingDifficulty == SudokuDifficulty.easy),
                     DifficultyCard(
                       difficulty: SudokuDifficulty.medium,
                       onTap: () => _startNewGame(SudokuDifficulty.medium),
-                      isLoading: _isStartingGame && context.watch<GameState>().status == GameStatus.loading),
+                      isLoading: _startingDifficulty == SudokuDifficulty.medium),
                     DifficultyCard(
                       difficulty: SudokuDifficulty.hard,
                       onTap: () => _startNewGame(SudokuDifficulty.hard),
-                      isLoading: _isStartingGame && context.watch<GameState>().status == GameStatus.loading),
+                      isLoading: _startingDifficulty == SudokuDifficulty.hard),
                     const SizedBox(height: 32),
                     Text(
                       'Your Personal Best',
@@ -123,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         minimumSize: const Size.fromHeight(50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)))),
-                  ]))),
-          ])));
+                  ]))), 
+          ]));
   }
 }
